@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ActivityAdvisor — GoMauritius Activities</title>
+  <meta name="description" content="Discover activities across Mauritius: diving, hiking, boat trips, kitesurfing, yoga and spa experiences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f9f3eb;--surface:#fffaf4;--ink:#261b15;--muted:#705f52;--line:#dfd0be;--primary:#b84a24;--green:#1d6356}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif}button,input,select{font:inherit}.shell{max-width:1180px;margin:auto;padding:24px}header{border-bottom:1px solid var(--line);background:var(--surface)}.top{max-width:1180px;margin:auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700}.brand small{display:block;font:700 11px 'Plus Jakarta Sans';letter-spacing:.14em;color:#8f6524;text-transform:uppercase}.hero{padding:56px 0 32px}.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,7vw,72px);line-height:.95;margin:0 0 18px}.hero h1 em{color:var(--primary)}.hero p{max-width:680px;color:var(--muted);font-size:18px}.filters{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:12px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}.filters input,.filters select{width:100%;height:44px;border:1px solid var(--line);border-radius:8px;background:white;padding:0 12px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.chip{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 14px;cursor:pointer}.chip.active{background:var(--primary);color:white;border-color:var(--primary)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}.art{height:180px;background:linear-gradient(135deg,#dbe8e8,#c5dedc);display:flex;align-items:end;padding:12px}.art span{background:white;border-radius:999px;padding:6px 10px;color:var(--green);font-size:12px;font-weight:700}.card-body{padding:18px}.meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.card h2{font-family:'Cormorant Garamond',serif;font-size:25px;margin:10px 0}.card p{color:var(--muted);font-size:14px}.footer-card{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}.price{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700}.btn{border:0;border-radius:999px;padding:11px 16px;text-decoration:none;cursor:pointer}.btn-primary{background:var(--primary);color:white}.btn-green{background:var(--green);color:white}.provider{margin-top:48px;padding:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px}.provider h2{font-family:'Cormorant Garamond',serif;font-size:36px;margin:0 0 8px}.provider-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.provider-grid div{padding:16px;background:white;border:1px solid var(--line);border-radius:10px}.footer{text-align:center;color:var(--muted);padding:40px 24px}@media(max-width:800px){.filters{grid-template-columns:1fr 1fr}.provider-grid{grid-template-columns:1fr}.top{align-items:flex-start}.hero{padding-top:36px}}@media(max-width:520px){.filters{grid-template-columns:1fr}.shell{padding:16px}.top{padding:14px 16px}.hero h1{font-size:44px}}
+  </style>
+</head>
+<body>
+<header><div class="top"><div class="brand">ActivityAdvisor<small>GoMauritius Activities</small></div><button class="btn btn-primary" onclick="document.querySelector('.provider').scrollIntoView({behavior:'smooth'})">For providers</button></div></header>
+<main class="shell">
+  <section class="hero"><h1>Discover every adventure in <em>Mauritius</em></h1><p>Search verified diving, hiking, fitness, boat, kite, yoga and spa experiences across the island.</p></section>
+  <section aria-label="Activity search">
+    <div class="filters">
+      <input id="search" type="search" placeholder="Search an activity or provider" oninput="render()">
+      <select id="region" onchange="render()"><option value="">All regions</option><option>Grand Baie</option><option>Flic en Flac</option><option>Curepipe</option><option>Le Morne</option><option>Tamarin</option><option>Blue Bay</option><option>Belle Mare</option><option>Chamarel</option></select>
+      <select id="price" onchange="render()"><option value="99999">Any price</option><option value="1500">Up to Rs 1,500</option><option value="2500">Up to Rs 2,500</option><option value="3500">Up to Rs 3,500</option><option value="5000">Up to Rs 5,000</option></select>
+      <select id="sort" onchange="render()"><option value="featured">Featured</option><option value="rating">Highest rated</option><option value="price">Lowest price</option></select>
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+  <section class="grid" id="grid" aria-live="polite"></section>
+  <section class="provider"><h2>Join free. Pay only on confirmed bookings.</h2><p>Professional Mauritius operators can submit a BRN, licence and WhatsApp number for manual verification.</p><div class="provider-grid"><div><strong>Commission</strong><br>15–20% per booking</div><div><strong>Featured listing</strong><br>Appear before standard results</div><div><strong>Direct enquiries</strong><br>Connect through WhatsApp</div></div></section>
+</main>
+<footer class="footer">ActivityAdvisor · GoMauritius Activities — MVP demonstration</footer>
+<script>
+const categories=['All','Diving','Hiking','CrossFit','Boat Trips','Kite','Yoga','Spa'];
+let category='All';
+const activities=[
+{id:1,title:'Coin de Mire Reef Dive',category:'Diving',region:'Grand Baie',provider:'Blue Lagoon Diving Centre',price:3200,rating:4.9,featured:true,phone:'23057124401'},
+{id:2,title:'Cathedral Cave Dive',category:'Diving',region:'Flic en Flac',provider:'West Coast Scuba Club',price:2900,rating:4.8,featured:false,phone:'23057331904'},
+{id:3,title:'Blue Bay Intro Dive & Snorkel',category:'Diving',region:'Blue Bay',provider:'Coral Sanctuary Divers',price:2100,rating:4.7,featured:false,phone:'23057886021'},
+{id:4,title:'Le Morne Brabant Summit Trek',category:'Hiking',region:'Le Morne',provider:'Morne Heritage Guides',price:2200,rating:4.9,featured:true,phone:'23058043312'},
+{id:5,title:'Tamarind Falls Canyon Hike',category:'Hiking',region:'Curepipe',provider:'Highlands Trail Guides',price:2400,rating:4.9,featured:false,phone:'23057419082'},
+{id:6,title:'Black River Gorges Hike',category:'Hiking',region:'Chamarel',provider:'Endemic Forest Treks',price:2600,rating:4.8,featured:false,phone:'23058192245'},
+{id:7,title:'Beachfront CrossFit WOD',category:'CrossFit',region:'Grand Baie',provider:'Box North Mauritius',price:850,rating:4.9,featured:false,phone:'23057901134'},
+{id:8,title:'Plateau Functional Training',category:'CrossFit',region:'Curepipe',provider:'Central Highlands Athletics',price:750,rating:4.7,featured:false,phone:'23057624809'},
+{id:9,title:'Île aux Cerfs Catamaran',category:'Boat Trips',region:'Belle Mare',provider:'East Wind Catamarans',price:3400,rating:4.8,featured:true,phone:'23057208877'},
+{id:10,title:'Northern Islets Full-Day Sail',category:'Boat Trips',region:'Grand Baie',provider:'Cap Malheureux Yachting',price:3600,rating:4.8,featured:false,phone:'23057496610'},
+{id:11,title:'Tamarin Dolphin Eco-Cruise',category:'Boat Trips',region:'Tamarin',provider:'Tamarin Bay Eco-Skippers',price:2800,rating:4.7,featured:false,phone:'23058221409'},
+{id:12,title:'One Eye Kitesurfing Lesson',category:'Kite',region:'Le Morne',provider:'Tradewind Kite Academy',price:4500,rating:5,featured:true,phone:'23057189940'},
+{id:13,title:'Belle Mare Kite Progression',category:'Kite',region:'Belle Mare',provider:'Alizés Kite & Wing',price:4200,rating:4.8,featured:false,phone:'23057553018'},
+{id:14,title:'Sunrise Beach Vinyasa',category:'Yoga',region:'Flic en Flac',provider:'Shanti Lagoon Studio',price:1200,rating:4.9,featured:false,phone:'23057384490'},
+{id:15,title:'Chamarel Forest Breathwork',category:'Yoga',region:'Chamarel',provider:'Ebony Ridge Wellness',price:1650,rating:4.9,featured:false,phone:'23058315520'},
+{id:16,title:'Volcanic Basalt Spa Ritual',category:'Spa',region:'Belle Mare',provider:'Sands & Salt Spa',price:4800,rating:4.9,featured:true,phone:'23057142208'},
+{id:17,title:'Ayurvedic Sports Recovery',category:'Spa',region:'Flic en Flac',provider:'Tamarind Leaf Spa',price:3500,rating:4.8,featured:false,phone:'23057668903'}
+];
+function rs(n){return 'Rs '+n.toLocaleString('en-US')}
+function renderChips(){document.getElementById('chips').innerHTML=categories.map(c=>`<button class="chip ${c===category?'active':''}" onclick="category='${c}';renderChips();render()">${c}</button>`).join('')}
+function render(){const q=document.getElementById('search').value.toLowerCase(),region=document.getElementById('region').value,max=+document.getElementById('price').value,sort=document.getElementById('sort').value;let list=activities.filter(a=>(category==='All'||a.category===category)&&(!region||a.region===region)&&a.price<=max&&(!q||(a.title+' '+a.provider+' '+a.region+' '+a.category).toLowerCase().includes(q)));if(sort==='rating')list.sort((a,b)=>b.rating-a.rating);if(sort==='price')list.sort((a,b)=>a.price-b.price);if(sort==='featured')list.sort((a,b)=>b.featured-a.featured||b.rating-a.rating);document.getElementById('grid').innerHTML=list.length?list.map(a=>`<article class="card"><div class="art"><span>${a.category}${a.featured?' · Featured':''}</span></div><div class="card-body"><div class="meta"><span>${a.region}</span><span>★ ${a.rating}</span></div><h2>${a.title}</h2><p>with ${a.provider}</p><div class="footer-card"><div><small>From</small><br><span class="price">${rs(a.price)}</span></div><a class="btn btn-green" target="_blank" rel="noopener" href="https://wa.me/${a.phone}?text=${encodeURIComponent('Hello '+a.provider+', I am interested in '+a.title+' in Mauritius.')}">WhatsApp</a></div></div></article>`).join(''):'<p>No matching activities.</p>'}
+renderChips();render();
+</script>
+</body>
+</html>
